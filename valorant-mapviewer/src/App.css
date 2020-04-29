@@ -3,13 +3,32 @@
   display: inline-block;
   position: relative;
   width: 95%;
-  padding-bottom: 100%; /* aspect ratio */
-  vertical-align: top;
+  padding-bottom: 90%;/* aspect ratio */
+  vertical-align: middle;
   overflow: hidden;
+  margin: auto;
 }
 .svg-content-responsive {
   display: inline-block;
   position: absolute;
   top: 10px;
   left: 0;
+}
+.splitter {
+  width: 100%;
+  height: 100px;
+  display: flex;
+}
+
+#config {
+  background-color: #dde;
+  width: 20%;
+  height: 100%;
+  min-width: 10px;
+}
+
+#mapviewer {
+  width: 80%;
+  height: 100%;
+  min-width: 10px;
 }

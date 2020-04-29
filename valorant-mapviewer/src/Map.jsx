@@ -5,13 +5,27 @@ class Haven extends Component{
     constructor(props){
         super(props);
         this.myRef = React.createRef();
-
+        this.state = {
+            isBuyPeriod: this.props.isBuyPeriod
+        }
     }
     componentDidMount(){
         this.drawMapBounds();
         this.drawSites();
         this.drawObstacles();
+        this.drawHighestObstacles();
+        this.drawBuyBarriers();
+        this.drawWindows();
         this.drawInnerWalls();
+        
+
+    }
+    componentDidUpdate(){
+        let layer1 = d3.select("#Barrier")
+        if (this.props.isBuyPeriod)
+            layer1.style('display', null);
+        else
+            layer1.style('display', 'none');
 
     }
     drawMapBounds(){
@@ -340,13 +354,226 @@ class Haven extends Component{
         .attr("transform", "translate(134.76376 53.438987)")
         
         let layer1 = d3.select("#Ground3")
+
+        layer1.append("path")//1
+        .attr("d", "m 52.122916,11.25 -8.995833,-30.95625 9.260416,-2.645833 8.73125,30.9562495 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//2
+        .attr("d", "m 91.810416,-16.266666 v -0.529167 h -7.9375 V -0.65625 h 15.081249 v -7.9374999 h -7.143749 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//3
+        .attr("d", "m 159.01458,-16.002083 -6.35,2.910416 4.49792,7.6729171 5.82083,-3.96875 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//4
+        .attr("d", "m 187.58958,43.529167 v 3.439584 h 3.175 v 2.645833 h 7.67292 v -6.085417 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//5
+        .attr("d", "m 205.05208,90.360417 h -7.40833 v -7.408333 h 7.40833 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//6
+        .attr("d", "M 179.65208,125.28542 V 114.4375 h 7.67292 v 10.05417 h -1.05834 V 125.55 h -6.61458 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//7
+        .attr("d", "m 266.17083,146.71667 h -7.14375 v 7.67291 h 7.14375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//8
+        .attr("d", "m 242.8875,269.21875 v 0.26458 h 7.9375 v -7.9375 h -7.9375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//9
+        .attr("d", "M 179.3875,257.57708 V 249.375 h -8.20209 v 8.73125 h 8.20209 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//10
+        .attr("d", "m 110.33125,213.65625 v 7.9375 h 7.14375 v -7.9375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//11
+        .attr("d", "M 90.487499,30.829168 V 23.95 h -6.614583 v 6.879168 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//12
+        .attr("d", "M -3.7041666,7.2812499 V 14.689583 H -11.90625 V 7.2812499 Z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//13
+        .attr("d", "m 116.15208,329.01458 h -7.9375 v -7.67291 h 7.9375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//14
+        .attr("d", "m 13.49375,352.82708 h 6.614583 v -7.67291 H 13.49375 Z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//15
+        .attr("d", "m 0.52916666,308.37708 v -7.14375 H -6.6145832 v 7.14375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//16
+        .attr("d","m 52.122916,341.45 h 7.672917 v -32.27917 h -7.9375 V 341.45 Z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//17
+        .attr("d","m 60.060416,309.17083 h 7.672916 v 7.67292 h -7.672916 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//18
+        .attr("d","m 60.060416,205.45417 v -7.40834 h 35.454166 v 7.40834 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//19
+        .attr("d","m 64.029166,185.61042 h -19.84375 v -38.89375 h 19.84375 v 11.64166 h 7.9375 v 15.34584 h -7.9375 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//20
+        .attr("d","m 14.022916,174.49792 h 2.910417 v -16.66875 h -2.910417 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//21
+        .attr("d","m 95.249999,134.28125 h -6.614583 v -7.9375 h 6.614583 z")
+        .style("fill", "#ff00ff")
+        .style("stroke", "#ff00ff")
+        .style("stroke-linejoin", "miter")
+    }
+    drawWindows(){
+        this.svg.append("g")
+        .attr("id","Windows")
+        .attr("transform", "translate(134.76376 53.438987)")
+        
+        let layer1 = d3.select("#Windows")
+
+        layer1.append("path")//1
+        .attr("d", "m 191.02916,181.1125 h 2.91042 v -21.16667 h -2.91042 z")
+        .style("fill", "#2ab4dc")
+        .style("stroke", "#000000")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//1
+        .attr("d", "m 78.316666,244.87708 h -2.38125 v -18.25625 h 2.38125 z")
+        .style("fill", "#2ab4dc")
+        .style("stroke", "#000000")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//1
+        .attr("d", "M 17.727083,-22.0875 H 20.6375 v -11.377082 h -2.910417 z")
+        .style("fill", "#2ab4dc")
+        .style("stroke", "#000000")
+        .style("stroke-linejoin", "miter")
+        
+    }
+    drawBuyBarriers(){
+        this.svg.append("g")
+        .attr("id","Barrier")
+        .attr("transform", "translate(134.76376 53.438987)")
+        
+        let layer1 = d3.select("#Barrier")
+
+        layer1.append("path")//1
+        .attr("d", "m 121.17917,-16.266666 h 1.05833 v -20.637499 h -1.05833 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//2
+        .attr("d","m 108.74375,257.84166 h 1.32292 v -44.18541 h -1.32292 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//3
+        .attr("d","m 116.15208,358.11875 h 1.32292 v -21.16667 h -1.32292 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//4
+        .attr("d","m 210.60833,306.525 v 1.32292 h 16.66875 V 306.525 Z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//5
+        .attr("d","m 224.89583,220.27083 h 1.32292 v -18.78541 h -1.32292 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//6
+        .attr("d","m 193.14583,146.98125 v 1.32292 h 18.25625 v -1.32292 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//7
+        .attr("d","m 96.837499,162.32708 v 16.66875 h 1.322916 v -16.66875 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//8
+        .attr("d","m 205.31666,110.73333 h 1.32292 V 98.297917 h -1.32292 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
+
+        layer1.append("path")//9
+        .attr("d","m 92.074999,30.829168 v 1.322916 h 15.610421 v -1.322916 z")
+        .style("fill", "#0000ff")
+        .style("stroke", "#0000ff")
+        .style("stroke-linejoin", "miter")
     }
     render(){
-        return <div class="svg-container">
-            <svg class="svg-content-responsive" preserveAspectRatio="xMinYMin meet"
-                viewBox={"0 0 " +this.props.width + " " + this.props.height}
-                ref={element => (this.svg = d3.select(element))}>
-            </svg>       
+        return <div className="svg-container splitter">
+                <svg className="svg-content-responsive" preserveAspectRatio="xMinYMin meet"
+                    viewBox={"0 0 " +this.props.width + " " + this.props.height}
+                    ref={element => (this.svg = d3.select(element))}>
+                </svg>       
         </div>
     }
 }
