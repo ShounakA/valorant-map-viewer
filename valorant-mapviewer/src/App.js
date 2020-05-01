@@ -12,6 +12,7 @@ class App extends Component{
         isBuyChecked: true,
         resetCallable: null,
         currentTeam: 'attack',
+        players: {attack:[],defense:[]},
         agents: [{name:'Breach',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/breach/breach-cutout2-compressed.png', color: '#9E644B',refs: React.createRef() , callable:null}
                 ,{name:'Brimstone',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/brimstone/brimstone-cutout-compressed.png', color: '#468EB7',refs: React.createRef(),callable:null}
                 ,{name:'Cypher',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/cypher/cypher-cutout-compressed.png',color:'#A9AD96',refs: React.createRef(),callable:null}
@@ -41,9 +42,18 @@ class App extends Component{
     this.state.resetCallable.resetPan(event);
   }
   handleAgent(key){
+    let team = this.state.currentTeam
     let agent =this.state.agents[key]
-    console.log(agent)
-    agent.callable.addPlayer(key,this.state.currentTeam,agent.color, agent.name)
+    let players = this.state.players
+    console.log(players)
+    if (players[team].length<5 && !(players[team].includes(agent.name))){
+        agent.callable.addPlayer(key,team,agent.color, agent.name)
+        players[team].push(agent.name)
+        this.setState({players:players})
+    }else{
+      console.log('Team full or Agent already on map')
+    }
+    
   }
   handleHoverOn(ref){
     ref.current.width =84

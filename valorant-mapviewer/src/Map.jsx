@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as d3 from 'd3';
-import Draggable from './Draggable'
 import ReactDOM from 'react-dom'
 class Haven extends Component{
     constructor(props){
