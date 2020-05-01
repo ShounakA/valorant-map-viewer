@@ -21,14 +21,36 @@
 }
 
 #config {
-  background-color: #dde;
-  width: 20%;
+  /* background-color: #dde; */
+  width: 30%;
   height: 100%;
   min-width: 10px;
 }
-
 #mapviewer {
-  width: 80%;
+  width: 70%;
   height: 100%;
   min-width: 10px;
+}
+.agents{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.agent-button{
+  border-radius: 8px;
+  text-align: center;
+  padding: none;
+}
+.agents label{
+  color: azure;
+  margin: auto;
+}
+.agent-image:hover{
+  width: 82px;
+  height: 54px;
+}
+.agent-image{
+  max-width: 80px;
+  max-height: 52px;
 }
