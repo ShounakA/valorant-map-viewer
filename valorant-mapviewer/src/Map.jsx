@@ -7,6 +7,7 @@ class Haven extends Component{
         this.myRef = React.createRef();
         this.state = {
             isBuyPeriod: this.props.isBuyPeriod,
+            currMap:'Bind'
         }
     }
     componentDidMount(){
@@ -16,7 +17,25 @@ class Haven extends Component{
          this.props.setAgentCallables(
              [{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer},{addPlayer:this.addPlayer}]
          )
-        this.drawMap();
+         this.props.setMapCallable({
+             updateMap: this.updateMap
+         })
+         this.setState({svgRef: this.svg})
+        this.drawMap(this.props.map);
+    }
+    componentDidUpdate(){
+        let layer1 = d3.select("#attack-barrier")
+        let layer2 = d3.select("#defense-barrier")
+        
+        if (this.props.isBuyPeriod){
+            layer1.style('display', null);
+            layer2.style('display', null);
+        }
+        else{
+            layer1.style('display', 'none');
+            layer2.style('display', 'none');
+        }
+        
     }
     resetPan(event){
         let map = d3.select("#Bind")
@@ -28,36 +47,41 @@ class Haven extends Component{
         .duration(750)
         .call(zoom.transform, d3.zoomIdentity);
     }
-    componentDidUpdate(){
-        let layer1 = d3.select("#attack-barrier")
-        let layer2 = d3.select("#defense-barrier")
-        if (this.props.isBuyPeriod){
-            layer1.style('display', null);
-            layer2.style('display', null);
-        }
-        else{
-            layer1.style('display', 'none');
-            layer2.style('display', 'none');
-        }
-        
-    }
     
-    drawMap(){
-        d3.xml("bind-map.svg").then(
+    drawMap(mapcur){
+        d3.xml("./"+mapcur.file).then(
             (map) => {
-                console.log(map)
                 this.svg.node().append(map.documentElement)
-                d3.select("#Bind").attr("class","svg-content-responsive")
-                this.drawCharacter()
-                var bind = d3.select("#Bind").call(d3.zoom().on("zoom", function () {
+                d3.select("#"+mapcur.name).attr("class","svg-content-responsive")
+                this.drawCharacter("#"+mapcur.name)
+                this.setState({currMap: mapcur.name})
+                var bind = d3.select("#"+mapcur.name).call(d3.zoom().on("zoom", function () {
                     bind.attr("transform", d3.event.transform)
             }))
-                // drag(d3.select('#P1'))
             }
         )
     }
-    drawCharacter(){
-        d3.select("#Bind").append("g")
+    updateMap(mapfile, mapname, ref){
+        var svgRef = ref.current.svg;
+        var myState = ref.current
+        var mapFile = mapfile;
+        var mapName = mapname;
+        d3.xml("./"+mapFile).then(
+            (map) => {
+                d3.select("#"+myState.state.currMap).remove();
+                svgRef.node().append(map.documentElement);
+                d3.select("#"+mapName).attr("class","svg-content-responsive")
+                myState.drawCharacter("#"+mapName);
+                myState.setState({currMap: mapName})
+                var bind = d3.select("#"+mapName).call(d3.zoom().on("zoom", function () {
+                    bind.attr("transform", d3.event.transform)
+
+            }))
+            }
+        )
+    }
+    drawCharacter(id){
+        d3.select(id).append("g")
         .attr("id", "Draggables")
     }
     addPlayer(event, team, color, name){
