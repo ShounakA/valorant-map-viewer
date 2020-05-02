@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/valorant-map-viewer/static/css/main.8dd7cdb2.chunk.css",
+    "main.js": "/valorant-map-viewer/static/js/main.f23ba343.chunk.js",
+    "main.js.map": "/valorant-map-viewer/static/js/main.f23ba343.chunk.js.map",
+    "runtime-main.js": "/valorant-map-viewer/static/js/runtime-main.53fe6534.js",
+    "runtime-main.js.map": "/valorant-map-viewer/static/js/runtime-main.53fe6534.js.map",
+    "static/js/2.ce262347.chunk.js": "/valorant-map-viewer/static/js/2.ce262347.chunk.js",
+    "static/js/2.ce262347.chunk.js.map": "/valorant-map-viewer/static/js/2.ce262347.chunk.js.map",
+    "index.html": "/valorant-map-viewer/index.html",
+    "precache-manifest.a79b57ff2089adaf262ed690c5c18316.js": "/valorant-map-viewer/precache-manifest.a79b57ff2089adaf262ed690c5c18316.js",
+    "service-worker.js": "/valorant-map-viewer/service-worker.js",
+    "static/css/main.8dd7cdb2.chunk.css.map": "/valorant-map-viewer/static/css/main.8dd7cdb2.chunk.css.map",
+    "static/js/2.ce262347.chunk.js.LICENSE.txt": "/valorant-map-viewer/static/js/2.ce262347.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/valorant-map-viewer/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.53fe6534.js",
+    "static/js/2.ce262347.chunk.js",
+    "static/css/main.8dd7cdb2.chunk.css",
+    "static/js/main.f23ba343.chunk.js"
+  ]
+}
