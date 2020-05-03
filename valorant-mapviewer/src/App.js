@@ -53,7 +53,7 @@ class App extends Component{
     let agent =this.state.agents[key]
     let players = this.state.players
     if (players[team].length<5 && !(players[team].includes(agent.name))){
-        agent.callable.addPlayer(key,team,agent.color, agent.name)
+        agent.callable.addPlayer(key,team,agent.cdn, agent.name)
         players[team].push(agent.name)
         this.setState({players:players})
     }else{
@@ -117,7 +117,7 @@ class App extends Component{
               {this.renderAgents()}
             </div>
           </div>
-          <Haven ref={this.state.mapRef} width={"495"} height={"444"} isBuyPeriod={this.state.isBuyChecked} setResetCallable={this.setResetCallable.bind(this)} setAgentCallables={this.setAgentCallables.bind(this)} setMapCallable={this.setMapCallable.bind(this)} map={this.state.currentMap}/>
+          <Haven ref={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} setResetCallable={this.setResetCallable.bind(this)} setAgentCallables={this.setAgentCallables.bind(this)} setMapCallable={this.setMapCallable.bind(this)} map={this.state.currentMap}/>
         </div>
       </div>
     );

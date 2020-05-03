@@ -7,7 +7,9 @@ class Haven extends Component{
         this.myRef = React.createRef();
         this.state = {
             isBuyPeriod: this.props.isBuyPeriod,
-            currMap:'Bind'
+            currMap:'Bind',
+            width:this.props.width,
+            height:this.props.height
         }
     }
     componentDidMount(){
@@ -52,10 +54,10 @@ class Haven extends Component{
         d3.xml("./"+mapcur.file).then(
             (map) => {
                 this.svg.node().append(map.documentElement)
-                d3.select("#"+mapcur.name).attr("class","svg-content-responsive")
+                d3.select("#"+mapcur.name).attr("class","svg-content-responsive").attr("viewBox",["0","0",this.state.width, this.state.height].join(' '))
                 this.drawCharacter("#"+mapcur.name)
                 this.setState({currMap: mapcur.name})
-                var bind = d3.select("#"+mapcur.name).call(d3.zoom().on("zoom", function () {
+                var bind = d3.select("#"+mapcur.name).call(d3.zoom().scaleExtent([0.55,5]).on("zoom", function () {
                     bind.attr("transform", d3.event.transform)
             }))
             }
@@ -70,10 +72,10 @@ class Haven extends Component{
             (map) => {
                 d3.select("#"+myState.state.currMap).remove();
                 svgRef.node().append(map.documentElement);
-                d3.select("#"+mapName).attr("class","svg-content-responsive")
+                d3.select("#"+mapName).attr("class","svg-content-responsive").attr("viewBox",["0","0",myState.state.width, myState.state.height].join(' '))
                 myState.drawCharacter("#"+mapName);
                 myState.setState({currMap: mapName})
-                var bind = d3.select("#"+mapName).call(d3.zoom().on("zoom", function () {
+                var bind = d3.select("#"+mapName).call(d3.zoom().scaleExtent([0.55,5]).on("zoom", function () {
                     bind.attr("transform", d3.event.transform)
 
             }))
@@ -84,7 +86,7 @@ class Haven extends Component{
         d3.select(id).append("g")
         .attr("id", "Draggables")
     }
-    addPlayer(event, team, color, name){
+    addPlayer(event, team, cdn, name){
         var layer = d3.select("#Draggables")
 
         layer.append('g')
@@ -98,15 +100,17 @@ class Haven extends Component{
         layer.append("circle")
         .attr('cx', 50)
         .attr('cy', 50)
-        .attr('r', 5)
+        .attr('r', 12)
         .style("fill", teamcolor)
-        layer.append("circle")
-        .attr('cx', 50)
-        .attr('cy', 50)
-        .attr('r', 5)
-        .style("fill", 'none')
-        .style("stroke", color)
-        .style('stroke-width', 3)
+        .style("stroke", teamcolor)
+        .style('stroke-width', 5)
+        layer.append("image")
+        .attr("href", cdn)
+        .attr('x', 35)
+        .attr('y', 35)
+        .attr('width',30)
+        .attr('height', 30)
+        
 
         //make draggable
         let translateX = 0
