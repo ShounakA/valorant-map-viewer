@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "73294db160dc245172a0c6130997d2b3",
+    "revision": "2b5c89ff93d12f622fec761a2fea5b44",
     "url": "/valorant-map-viewer/index.html"
   },
   {
-    "revision": "61e79087b8c9419c3405",
-    "url": "/valorant-map-viewer/static/css/main.8dd7cdb2.chunk.css"
+    "revision": "a94c57ac9d113ce00f14",
+    "url": "/valorant-map-viewer/static/css/main.99a97497.chunk.css"
   },
   {
     "revision": "714edb5aa29911737277",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/valorant-map-viewer/static/js/2.ce262347.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "61e79087b8c9419c3405",
-    "url": "/valorant-map-viewer/static/js/main.f23ba343.chunk.js"
+    "revision": "a94c57ac9d113ce00f14",
+    "url": "/valorant-map-viewer/static/js/main.67f8c9ba.chunk.js"
   },
   {
     "revision": "cd099bdfbb6749ea5d2a",
