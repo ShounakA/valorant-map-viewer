@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from './logo.svg';
 import './App.css';
 import Haven from "./Map";
-
+import Agent from "./Components/Agent";
 class App extends Component{
   constructor(props){
       super(props);
@@ -53,8 +53,7 @@ class App extends Component{
     let agent =this.state.agents[key]
     let players = this.state.players
     if (players[team].length<5 && !(players[team].includes(agent.name))){
-        agent.callable.addPlayer(key,team,agent.cdn, agent.name)
-        players[team].push(agent.name)
+        players[team].push({cdn:agent.cdn, name:agent.name})
         this.setState({players:players})
     }else{
       console.log('Team full or Agent already on map')
@@ -76,6 +75,17 @@ class App extends Component{
         <label className="" to={"btn"+item.name}>{item.name}</label>
       </div>
     )
+  }
+  renderFieldAgents(){
+    if (this.state.currentTeam == 'attack'){
+      return this.state.players.attack.map((item,key)=> 
+        <Agent name={item.name} cdn={item.cdn} team='attack' key={key}/>
+      );
+    }else{
+      return this.state.players.defense.map((item,key)=> 
+        <Agent name={item.name} cdn={item.cdn} team='defense' key={key}/>
+      );
+    }
   }
   setAttack(event){
     this.setState({currentTeam:'attack'})
@@ -115,6 +125,9 @@ class App extends Component{
             <button ref={this.defRef} onClick={this.setDefense.bind(this)}>Defenders</button>
             <div className="agents">
               {this.renderAgents()}
+            </div>
+            <div>
+              {this.renderFieldAgents()}
             </div>
           </div>
           <Haven ref={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} setResetCallable={this.setResetCallable.bind(this)} setAgentCallables={this.setAgentCallables.bind(this)} setMapCallable={this.setMapCallable.bind(this)} map={this.state.currentMap}/>

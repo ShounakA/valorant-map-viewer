@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom'
-class Haven extends Component{
+class Map extends Component{
     constructor(props){
         super(props);
         this.myRef = React.createRef();
@@ -86,4 +86,4 @@ class Haven extends Component{
         return <div className="svg-container splitter" ref={element => (this.svg = d3.select(element))}></div>
     }
 }
-export default Haven
+export default Map
