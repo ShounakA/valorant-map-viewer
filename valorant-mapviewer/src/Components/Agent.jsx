@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as d3 from 'd3';
-import ReactDOM from 'react-dom'
 class Agent extends Component{
     constructor(props){
         super(props);
@@ -15,10 +14,10 @@ class Agent extends Component{
         }
     }
     componentDidMount(){
-        var team = this.state.team;
-        var cdn = this.state.cdn;
-        var name = this.state.name;
         this.addPlayer();
+    }
+    componentWillUnmount(){
+        d3.select('#'+this.state.id).remove();
     }
     addPlayer(){
         var team = this.state.team;
@@ -60,7 +59,7 @@ class Agent extends Component{
         const handleDrag = d3.drag()
         .subject(
             function() {
-                const me = d3.select(this);
+                d3.select(this);
                 return { x: translateX, y: translateY }
             }
         ).on('drag', 
@@ -87,7 +86,6 @@ class Agent extends Component{
         })
     }
     deleteAgent(){
-        var agent = d3.select('#'+this.state.id).remove();
         this.props.onDelete(this.state.name, this.state.team)
     }
     render(){
