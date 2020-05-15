@@ -110,7 +110,7 @@ class Map extends Component{
         .interpolate('basis')
     }
     drawMap(mapcur){
-        d3.xml("./valorant-map-viewer/"+mapcur.file).then(
+        d3.xml("./"+mapcur.file).then(
             (map) => {
                 console.log(this.state)
                 let me = d3.select(this.myRef.current);
@@ -131,7 +131,7 @@ class Map extends Component{
         var myState = ref.current
         var mapFile = mapfile;
         var mapName = mapname;
-        d3.xml("./valorant-map-viewer/"+mapFile).then(
+        d3.xml("./"+mapFile).then(
             (map) => {
                 d3.select("#"+myState.state.currMap).remove();
                 svgRef.node().append(map.documentElement);
