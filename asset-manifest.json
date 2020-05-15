@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/valorant-map-viewer/static/css/main.99a97497.chunk.css",
-    "main.js": "/valorant-map-viewer/static/js/main.67f8c9ba.chunk.js",
-    "main.js.map": "/valorant-map-viewer/static/js/main.67f8c9ba.chunk.js.map",
+    "main.js": "/valorant-map-viewer/static/js/main.a40b39d3.chunk.js",
+    "main.js.map": "/valorant-map-viewer/static/js/main.a40b39d3.chunk.js.map",
     "runtime-main.js": "/valorant-map-viewer/static/js/runtime-main.53fe6534.js",
     "runtime-main.js.map": "/valorant-map-viewer/static/js/runtime-main.53fe6534.js.map",
-    "static/js/2.ce262347.chunk.js": "/valorant-map-viewer/static/js/2.ce262347.chunk.js",
-    "static/js/2.ce262347.chunk.js.map": "/valorant-map-viewer/static/js/2.ce262347.chunk.js.map",
+    "static/js/2.3e3101ac.chunk.js": "/valorant-map-viewer/static/js/2.3e3101ac.chunk.js",
+    "static/js/2.3e3101ac.chunk.js.map": "/valorant-map-viewer/static/js/2.3e3101ac.chunk.js.map",
     "index.html": "/valorant-map-viewer/index.html",
-    "precache-manifest.720506db8d7b43ea86d3890ab3c33d47.js": "/valorant-map-viewer/precache-manifest.720506db8d7b43ea86d3890ab3c33d47.js",
+    "precache-manifest.916122068a24407a3a9c7c8094b0353d.js": "/valorant-map-viewer/precache-manifest.916122068a24407a3a9c7c8094b0353d.js",
     "service-worker.js": "/valorant-map-viewer/service-worker.js",
     "static/css/main.99a97497.chunk.css.map": "/valorant-map-viewer/static/css/main.99a97497.chunk.css.map",
-    "static/js/2.ce262347.chunk.js.LICENSE.txt": "/valorant-map-viewer/static/js/2.ce262347.chunk.js.LICENSE.txt",
+    "static/js/2.3e3101ac.chunk.js.LICENSE.txt": "/valorant-map-viewer/static/js/2.3e3101ac.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/valorant-map-viewer/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.53fe6534.js",
-    "static/js/2.ce262347.chunk.js",
+    "static/js/2.3e3101ac.chunk.js",
     "static/css/main.99a97497.chunk.css",
-    "static/js/main.67f8c9ba.chunk.js"
+    "static/js/main.a40b39d3.chunk.js"
   ]
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/valorant-map-viewer/precache-manifest.720506db8d7b43ea86d3890ab3c33d47.js"
+  "/valorant-map-viewer/precache-manifest.916122068a24407a3a9c7c8094b0353d.js"
 );
 
 self.addEventListener('message', (event) => {
