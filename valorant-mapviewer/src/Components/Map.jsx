@@ -118,7 +118,7 @@ class Map extends Component{
                 d3.select("#"+mapcur.name).attr("class","svg-content-responsive").attr("viewBox",["0","0",this.state.width, this.state.height].join(' '))
                 this.drawCharacterLayer("#"+mapcur.name)
                 this.drawDrawingBoardLayer();
-                this.drawColorPallete();
+                // this.drawColorPallete();
                 this.setState({currMap: mapcur.name})
                 var bind = d3.select("#"+mapcur.name).call(d3.zoom().scaleExtent([0.55,5]).on("zoom", function () {
                     bind.attr("transform", d3.event.transform)
