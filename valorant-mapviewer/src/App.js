@@ -11,7 +11,7 @@ class App extends Component{
         isBuyChecked: true,
         resetCallable: null,
         mapCallable: null,
-        maps: [{name:'Bind',file:'bind-map.svg'},{name:'Haven', file:'haven-map.svg'},{name:'Split', file:'split-map.svg'}],
+        maps: [{name:'Select a Map',file:''},{name:'Bind',file:'bind-map.svg'},{name:'Haven', file:'haven-map.svg'},{name:'Split', file:'split-map.svg'}],
         mapRef: React.createRef(),
         currentTeam: 'attack',
         currentMap:'',
@@ -74,32 +74,36 @@ class App extends Component{
       </div>
     )
   }
-  renderFieldAgents(){
-    if (this.state.currentTeam === 'attack'){
+  renderAttackFieldAgents(){
+    if (this.state.players.attack.length>0){
       return this.state.players.attack.map((item,key)=> 
         <Agent name={item.name} cdn={item.cdn} team='attack' key={item.name} onDelete={this.removeFieldAgent.bind(this)}/>
       );
     }else{
-      return this.state.players.defense.map((item,key)=> 
-        <Agent name={item.name} cdn={item.cdn} team='defense' key={item.name} onDelete={this.removeFieldAgent.bind(this)}/>
-      );
+      return <h4>No Attackers on Field</h4>
     }
+
+  }
+  renderDefenseFieldAgents(){
+      if (this.state.players.defense.length>0){
+        return this.state.players.defense.map((item,key)=> 
+          <Agent name={item.name} cdn={item.cdn} team='defense' key={item.name} onDelete={this.removeFieldAgent.bind(this)}/>
+        );
+      }
+      else{
+        return <h4>No Defenders on Field</h4>
+      }
   }
   setAttack(event){
     this.setState({currentTeam:'attack'})
-    this.atkRef.current.style={backgroundColor:'#FF5859'}
-    this.defRef.current.style={backgroundColor:null}
   }
   setDefense(event){
     this.setState({currentTeam:'defense'})
-    this.defRef.current.style={background:'#24E8AD'}
-    this.atkRef.current.style={background:null}
   }
   renderMapSelection(){
-    return this.state.maps.map( (item, index) => <option key={index} value={item.file}>{item.name}</option>)
+    return this.state.maps.map( (item, index) => (index===0)? <option hidden disabled selected key={index} value={item.file}>{item.name}</option>:<option key={index} value={item.file}>{item.name}</option> )
   }
   onMapChange(event){
-    // var mapFile = event.target.value;
     var lowerName = event.target.value.split("-")[0]
     var mapName = (lowerName.substr(0,1)).toUpperCase() + lowerName.substr(1,lowerName.length)
     this.setState({players: {attack:[],defense:[]}})
@@ -132,7 +136,12 @@ class App extends Component{
               {this.renderAgents()}
             </div>
             <div>
-              {this.renderFieldAgents()}
+              <h3>Attack</h3>
+              {this.renderAttackFieldAgents()}
+            </div>
+            <div>
+              <h3>Defense</h3>
+              {this.renderDefenseFieldAgents()}
             </div>
           </div >
           <div id="map-canvas" ref={this.state.mapRef} className="svg-container splitter">
