@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from './logo.svg';
 import './App.css';
-import Haven from "./Map";
+import Map from "./Components/Map";
 import Agent from "./Components/Agent";
 class App extends Component{
   constructor(props){
@@ -17,16 +17,16 @@ class App extends Component{
         currentTeam: 'attack',
         currentMap:{name:'Bind',file:'bind-map.svg'},
         players: {attack:[],defense:[]},
-        agents: [{name:'Breach',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/breach/breach-cutout2-compressed.png', color: '#9E644B',refs: React.createRef() , callable:null}
-                ,{name:'Brimstone',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/brimstone/brimstone-cutout-compressed.png', color: '#468EB7',refs: React.createRef(),callable:null}
-                ,{name:'Cypher',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/cypher/cypher-cutout-compressed.png',color:'#A9AD96',refs: React.createRef(),callable:null}
-                ,{name:'Jett',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/jett/jett-cutout3-compressed.png',color:'#55D1E0',refs: React.createRef(),callable:null}
-                ,{name:'Omen',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/omen/omen-cutout-compressed.png',color:'#543EFF',refs: React.createRef(),callable:null}
-                ,{name:'Pheonix',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/phoenix/phoenix-cutout-compressed.png',color:'#F0753A',refs: React.createRef(),callable:null}
-                ,{name:'Raze',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/raze/raze-cutout-compressed.png',color:'#F6AD40',refs: React.createRef(),callable:null}
-                ,{name:'Sage',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/sage/sage-cutout-compressed.png',color:'#21CEAF',refs: React.createRef(),callable:null}
-                ,{name:'Sova',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/sova/sova-cutout-compressed.png',color:'#325FFF',refs: React.createRef(),callable:null}
-                ,{name:'Viper',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/viper/viper-cutout-compressed.png',color:'#2AC849',refs: React.createRef(),callable:null}],
+        agents: [{name:'Breach',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/breach/breach-cutout2-compressed.png', color: '#9E644B',refs: React.createRef()}
+                ,{name:'Brimstone',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/brimstone/brimstone-cutout-compressed.png', color: '#468EB7',refs: React.createRef()}
+                ,{name:'Cypher',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/cypher/cypher-cutout-compressed.png',color:'#A9AD96',refs: React.createRef()}
+                ,{name:'Jett',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/jett/jett-cutout3-compressed.png',color:'#55D1E0',refs: React.createRef()}
+                ,{name:'Omen',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/omen/omen-cutout-compressed.png',color:'#543EFF',refs: React.createRef()}
+                ,{name:'Pheonix',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/phoenix/phoenix-cutout-compressed.png',color:'#F0753A',refs: React.createRef()}
+                ,{name:'Raze',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/raze/raze-cutout-compressed.png',color:'#F6AD40',refs: React.createRef()}
+                ,{name:'Sage',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/sage/sage-cutout-compressed.png',color:'#21CEAF',refs: React.createRef()}
+                ,{name:'Sova',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/sova/sova-cutout-compressed.png',color:'#325FFF',refs: React.createRef()}
+                ,{name:'Viper',cdn:'https://blitz-cdn.blitz.gg/blitz/val/agents/viper/viper-cutout-compressed.png',color:'#2AC849',refs: React.createRef()}],
       }
   }
   handleChange(e){
@@ -38,13 +38,6 @@ class App extends Component{
   setResetCallable(callable){
     this.setState({resetCallable:callable})
   }
-  setAgentCallables(callables){
-    let temp = this.state.agents
-    for (let i=0;i<temp.length;i++){
-      temp[i].callable=callables[i]
-    }
-    this.setState({agents:temp})
-  }
   handlePanReset(event){
     this.state.resetCallable.resetPan(event);
   }
@@ -52,8 +45,20 @@ class App extends Component{
     let team = this.state.currentTeam
     let agent =this.state.agents[key]
     let players = this.state.players
-    if (players[team].length<5 && !(players[team].includes(agent.name))){
-        players[team].push({cdn:agent.cdn, name:agent.name})
+    let found = false;
+    let isAgentOnField = (name) => {
+      console.log('Trying to add '+name)
+      players[team].forEach(curragent => {
+        if (curragent.name === name){
+          found=true;
+        }
+      });
+      return found;
+    }
+    var isOnField = isAgentOnField(agent.name);
+    if (players[team].length<5 && !isOnField){
+        let curragent = {cdn:agent.cdn, name:agent.name};
+        players[team].push(curragent)
         this.setState({players:players})
     }else{
       console.log('Team full or Agent already on map')
@@ -79,11 +84,11 @@ class App extends Component{
   renderFieldAgents(){
     if (this.state.currentTeam == 'attack'){
       return this.state.players.attack.map((item,key)=> 
-        <Agent name={item.name} cdn={item.cdn} team='attack' key={key}/>
+        <Agent name={item.name} cdn={item.cdn} team='attack' key={item.name} onDelete={this.removeFieldAgent.bind(this)}/>
       );
     }else{
       return this.state.players.defense.map((item,key)=> 
-        <Agent name={item.name} cdn={item.cdn} team='defense' key={key}/>
+        <Agent name={item.name} cdn={item.cdn} team='defense' key={item.name} onDelete={this.removeFieldAgent.bind(this)}/>
       );
     }
   }
@@ -106,6 +111,14 @@ class App extends Component{
     var mapName = (lowerName.substr(0,1)).toUpperCase() + lowerName.substr(1,lowerName.length)
     this.setState({players: {attack:[],defense:[]}})
     this.state.mapCallable.updateMap(mapFile, mapName, this.state.mapRef)
+  }
+  removeFieldAgent(name, team){
+    let players = this.state.players
+    let i=0;
+    console.log('Trying to remove '+name+' '+ 'from '+ team)
+    const tempTeam = this.state.players[team].filter( item => item.name !== name);
+    players[team]=tempTeam;
+    this.setState({players:players})
   }
   render(){
     return (
@@ -130,7 +143,7 @@ class App extends Component{
               {this.renderFieldAgents()}
             </div>
           </div>
-          <Haven ref={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} setResetCallable={this.setResetCallable.bind(this)} setAgentCallables={this.setAgentCallables.bind(this)} setMapCallable={this.setMapCallable.bind(this)} map={this.state.currentMap}/>
+          <Map ref={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} setResetCallable={this.setResetCallable.bind(this)} setMapCallable={this.setMapCallable.bind(this)} map={this.state.currentMap}/>
         </div>
       </div>
     );
