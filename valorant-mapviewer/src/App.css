@@ -54,3 +54,27 @@
   max-width: 80px;
   max-height: 52px;
 }
+
+.btn {
+  pointer-events: all;
+  
+  font-family: FontAwesome;
+  fill: #333;
+  font-size: 32px;
+  text-anchor: middle;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.btn:hover {
+  fill: black;
+  cursor: pointer;
+}
+@font-face {
+  font-family: "FontAwesome";
+  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+}
