@@ -130,6 +130,7 @@ class App extends Component{
             <input id="barrier" type="checkbox" onChange={this.handleChange.bind(this)} checked={this.state.isBuyChecked}/>
             <br/>
             <button onClick={this.handlePanReset.bind(this)}>Reset</button><br/>
+            <Map mapRef={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} map={this.state.currentMap}/>
             <button ref={this.atkRef} onClick={this.setAttack.bind(this)}>Attackers</button>
             <button ref={this.defRef} onClick={this.setDefense.bind(this)}>Defenders</button>
             <div className="agents">
@@ -145,7 +146,7 @@ class App extends Component{
             </div>
           </div >
           <div id="map-canvas" ref={this.state.mapRef} className="svg-container splitter">
-            <Map mapRef={this.state.mapRef} width={"908"} height={"908"} isBuyPeriod={this.state.isBuyChecked} map={this.state.currentMap}/>
+            
           </div>
         </div>
       </div>
