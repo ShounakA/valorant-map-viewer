@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/valorant-map-viewer/static/css/main.5e9328f5.chunk.css",
-    "main.js": "/valorant-map-viewer/static/js/main.22c29399.chunk.js",
-    "main.js.map": "/valorant-map-viewer/static/js/main.22c29399.chunk.js.map",
-    "runtime-main.js": "/valorant-map-viewer/static/js/runtime-main.5110156a.js",
-    "runtime-main.js.map": "/valorant-map-viewer/static/js/runtime-main.5110156a.js.map",
-    "static/js/2.a7e724bd.chunk.js": "/valorant-map-viewer/static/js/2.a7e724bd.chunk.js",
-    "static/js/2.a7e724bd.chunk.js.map": "/valorant-map-viewer/static/js/2.a7e724bd.chunk.js.map",
-    "index.html": "/valorant-map-viewer/index.html",
-    "precache-manifest.50869e0343b639189b47afc183be3bb3.js": "/valorant-map-viewer/precache-manifest.50869e0343b639189b47afc183be3bb3.js",
-    "service-worker.js": "/valorant-map-viewer/service-worker.js",
-    "static/css/main.5e9328f5.chunk.css.map": "/valorant-map-viewer/static/css/main.5e9328f5.chunk.css.map",
-    "static/js/2.a7e724bd.chunk.js.LICENSE.txt": "/valorant-map-viewer/static/js/2.a7e724bd.chunk.js.LICENSE.txt"
+    "main.css": "/valorant-strategy-planner/static/css/main.5e9328f5.chunk.css",
+    "main.js": "/valorant-strategy-planner/static/js/main.204683c4.chunk.js",
+    "main.js.map": "/valorant-strategy-planner/static/js/main.204683c4.chunk.js.map",
+    "runtime-main.js": "/valorant-strategy-planner/static/js/runtime-main.0d034634.js",
+    "runtime-main.js.map": "/valorant-strategy-planner/static/js/runtime-main.0d034634.js.map",
+    "static/js/2.a7e724bd.chunk.js": "/valorant-strategy-planner/static/js/2.a7e724bd.chunk.js",
+    "static/js/2.a7e724bd.chunk.js.map": "/valorant-strategy-planner/static/js/2.a7e724bd.chunk.js.map",
+    "index.html": "/valorant-strategy-planner/index.html",
+    "precache-manifest.c0867a5c57fe600830fc588dc7c27570.js": "/valorant-strategy-planner/precache-manifest.c0867a5c57fe600830fc588dc7c27570.js",
+    "service-worker.js": "/valorant-strategy-planner/service-worker.js",
+    "static/css/main.5e9328f5.chunk.css.map": "/valorant-strategy-planner/static/css/main.5e9328f5.chunk.css.map",
+    "static/js/2.a7e724bd.chunk.js.LICENSE.txt": "/valorant-strategy-planner/static/js/2.a7e724bd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5110156a.js",
+    "static/js/runtime-main.0d034634.js",
     "static/js/2.a7e724bd.chunk.js",
     "static/css/main.5e9328f5.chunk.css",
-    "static/js/main.22c29399.chunk.js"
+    "static/js/main.204683c4.chunk.js"
   ]
 }
